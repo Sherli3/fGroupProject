@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+ATG-Required: DSS DafEar.Admin
+ATG-Config-Path: config/
+ATG-Class-Path: ./out
+ATG-EAR-Module: j2ee/personfront
+ATG-J2EE: j2ee/personfront
+

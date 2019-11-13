@@ -16,7 +16,7 @@ public class PersonDetails extends DynamoServlet {
 
     public void service(DynamoHttpServletRequest req, DynamoHttpServletResponse res) throws ServletException, IOException {
         String userId = req.getParameter("id");
-        logDebug("User:   "+userId);
+        logDebug("User:" + userId);
         try {
             RepositoryItem repositoryItem = repository.getItem(userId, "user");
             req.setParameter("element", repositoryItem);

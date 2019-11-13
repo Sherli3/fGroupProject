@@ -27,6 +27,9 @@
         <table name="visit_date_time" type="multi" id-column-names="user_id">
             <property name="visits" data-type="set" column-name="visit_id" component-item-type= "visit"/>
         </table>
+        <table name="scores" type="multi" id-column-names="user_id">
+            <property name="scores" data-type="set" column-name="score_id" component-item-type= "scores"/>
+        </table>
     </item-descriptor>
 
     <item-descriptor name="role">

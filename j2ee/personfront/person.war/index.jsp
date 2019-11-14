@@ -25,6 +25,7 @@
 
     </table>
     <dsp:a href="create.jsp">Create new person</dsp:a>
+    <dsp:a href="delete.jsp">Create new person</dsp:a>
     </body>
     </html>
 </dsp:page>

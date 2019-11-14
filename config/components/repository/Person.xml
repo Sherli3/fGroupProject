@@ -19,10 +19,10 @@
             <property name="roles" data-type="set"  column-name="id_role" component-item-type= "role"/>
         </table>
         <table name="mentor_and_user" type="multi"  id-column-names="mentor_id">
-            <property name="mentorUser" data-type="set" column-name="user_id" component-item-type= "user"/>
+            <property name="mentoredUser" data-type="set" column-name="user_id" component-item-type= "user"/>
         </table>
         <table name="mentor_and_user" type="multi" id-column-names="user_id">
-            <property name="mentorUser1" data-type="set" column-name="mentor_id" component-item-type= "user"/>
+            <property name="mentor" data-type="set" column-name="mentor_id" component-item-type= "user"/>
         </table>
         <table name="visit_date_time" type="multi" id-column-names="user_id">
             <property name="visits" data-type="set" column-name="visit_id" component-item-type= "visit"/>

@@ -2,6 +2,7 @@ package components.repository;
 
 import atg.repository.MutableRepositoryItem;
 import atg.repository.RepositoryException;
+import atg.repository.RepositoryItem;
 import atg.repository.servlet.RepositoryFormHandler;
 import atg.servlet.DynamoHttpServletRequest;
 import atg.servlet.DynamoHttpServletResponse;
@@ -12,8 +13,8 @@ import java.util.*;
 
 public class RepositoryFormHandlersPersonEdit extends RepositoryFormHandler {
     private String[] mentors;
-   // private String[] menId;
-    private String men;
+    private String person;
+    private String idMentor;
 
     protected void postUpdateItemProperties(MutableRepositoryItem pItem) throws ServletException, IOException {
         try {
@@ -22,13 +23,7 @@ public class RepositoryFormHandlersPersonEdit extends RepositoryFormHandler {
                 MutableRepositoryItem itemMentor = this.getRepository().getItemForUpdate(mentorId, "user");
                 mentorList.add(itemMentor);
             }
-
-           /* Set<MutableRepositoryItem> mentorList2 = new HashSet<>();
-            for (String mentorId : menId) {
-                this.getRepository().removeItem(mentorId, "user");
-                mentorList2.remove(mentorId);
-            }*/
-            pItem.setPropertyValue("mentorUser", mentorList);
+            pItem.setPropertyValue("mentor", mentorList);
 
         } catch (RepositoryException e) {
             e.printStackTrace();
@@ -38,11 +33,23 @@ public class RepositoryFormHandlersPersonEdit extends RepositoryFormHandler {
 
     }
 
+
     public boolean handleDelete(DynamoHttpServletRequest pRequest, DynamoHttpServletResponse pResponse) throws ServletException, IOException {
-        //String key = pRequest.getParameter("men");
         try {
-                logDebug("IDDD"+ men);
-                this.getRepository().removeItem(men, "mentorUser");
+            logDebug("MENTOR ID: " + person);
+            logDebug("PERSON ID: " + idMentor);
+            MutableRepositoryItem person = this.getRepository().getItemForUpdate(idMentor, "user");
+            Set<RepositoryItem> mentors = (Set<RepositoryItem>) person.getPropertyValue("mentor");
+            for (RepositoryItem mentor : mentors) {
+                logDebug("MENTOR CHECKED ID: " + mentor.getRepositoryId() );
+                if(mentor.getRepositoryId().equals(this.person)) {
+                    logDebug("EQUALS!!!! ");
+                    mentors.remove(mentor);
+                }
+            }
+            person.setPropertyValue("mentor", mentors);
+            this.getRepository().updateItem(person);
+
 
         } catch (RepositoryException e) {
             e.printStackTrace();
@@ -51,6 +58,13 @@ public class RepositoryFormHandlersPersonEdit extends RepositoryFormHandler {
 
     }
 
+    public String getIdMentor() {
+        return idMentor;
+    }
+
+    public void setIdMentor(String idMentor) {
+        this.idMentor = idMentor;
+    }
 
     public String[] getMentors() {
         return mentors;
@@ -60,11 +74,11 @@ public class RepositoryFormHandlersPersonEdit extends RepositoryFormHandler {
         this.mentors = mentors;
     }
 
-    public String getMen() {
-        return men;
+    public String getPerson() {
+        return person;
     }
 
-    public void setMen(String men) {
-        this.men = men;
+    public void setPerson(String person) {
+        this.person = person;
     }
 }

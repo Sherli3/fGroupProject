@@ -25,28 +25,25 @@
                 </dsp:oparam>
             </dsp:droplet>
         </dsp:select>
-        Delete:
 
         <dsp:droplet name="/components/PersonDetails/">
             <dsp:param name="id" value="${userId}"/>
             <dsp:oparam name="output">
                 <ul> Name: <dsp:valueof param="element.name"/></ul>
+                <dsp:input type="hidden" bean="/components/RepositoryFormHandlersPersonEdit.idMentor" paramvalue="element.id" />
             </dsp:oparam>
             <dsp:droplet name="/atg/dynamo/droplet/ForEach">
-                <dsp:param name="array" param="element.mentorUser"/>
+                <dsp:param name="array" param="element.mentor"/>
                 <dsp:oparam name="output">
                     <ul>Mentored:<dsp:valueof param="element.name"/>
                         <dsp:valueof param="element.id"/>
                         <dsp:valueof param="element.repositoryId"/>
-                        <dsp:input type="hidden" bean="/components/RepositoryFormHandlersPersonEdit.men" paramvalue="element.repositoryId" />
+                        <dsp:param name="parId" value="${userId}"/>
+                        <dsp:input type="hidden" bean="/components/RepositoryFormHandlersPersonEdit.person" paramvalue="element.repositoryId" />
                         <dsp:input  type="submit" value="Delete" bean="/components/RepositoryFormHandlersPersonEdit.delete"/></ul>
                 </dsp:oparam>
             </dsp:droplet>
         </dsp:droplet>
-
-
-
-
 
 
         Name: <dsp:input type="text" bean="/components/RepositoryFormHandlersPersonEdit.value.name"/>
@@ -58,6 +55,8 @@
                    value="details.jsp"/>
 
     </dsp:form>
+
+
     </body>
     </html>
 </dsp:page>

@@ -21,7 +21,7 @@
         </dsp:oparam>
         </dsp:droplet>
         <dsp:droplet name="/atg/dynamo/droplet/ForEach">
-            <dsp:param name="array" param="element.mentorUser"/>
+            <dsp:param name="array" param="element.mentoredUser"/>
             <dsp:oparam name="output">
                 <ul>Mentored:<dsp:valueof param="element.name"/></ul>
             </dsp:oparam>

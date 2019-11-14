@@ -10,43 +10,52 @@
 
     <dsp:form method="post">
 
-        Mentors:
-        <dsp:select bean="/components/RepositoryFormHandlersPersonEdit.mentors" >
-        <dsp:droplet name="/atg/dynamo/droplet/RQLQueryRange">
-            <dsp:param name="queryRQL" value="all"/>
-            <dsp:param name="repository" value="/components/repository/PersonRepository"/>
-            <dsp:param name="howMany" value="10"/>
-            <dsp:param name="itemDescriptor" value="user"/>
-            <dsp:oparam name="output">
-                <dsp:option paramvalue="element.repositoryId">
-                    <dsp:valueof param="element.id"/>
-                    <dsp:valueof param="element.name"/>
-                </dsp:option>
-            </dsp:oparam>
-        </dsp:droplet>
+        <dsp:select bean="/components/RepositoryFormHandlersPersonEdit.mentors">
+            Mentors:
+            <dsp:droplet name="/atg/dynamo/droplet/RQLQueryRange">
+                <dsp:param name="queryRQL" value="all"/>
+                <dsp:param name="repository" value="/components/repository/PersonRepository"/>
+                <dsp:param name="howMany" value="10"/>
+                <dsp:param name="itemDescriptor" value="user"/>
+                <dsp:oparam name="output">
+                    <dsp:option paramvalue="element.repositoryId">
+                        <dsp:valueof param="element.id"/>
+                        <dsp:valueof param="element.name"/>
+                    </dsp:option>
+                </dsp:oparam>
+            </dsp:droplet>
         </dsp:select>
-
+        Delete:
 
         <dsp:droplet name="/components/PersonDetails/">
             <dsp:param name="id" value="${userId}"/>
             <dsp:oparam name="output">
-                <ul> Name:<dsp:valueof param="element.id"/>
-                    <dsp:valueof param="element.name"/></ul>
+                <ul> Name: <dsp:valueof param="element.name"/></ul>
             </dsp:oparam>
             <dsp:droplet name="/atg/dynamo/droplet/ForEach">
                 <dsp:param name="array" param="element.mentorUser"/>
                 <dsp:oparam name="output">
-                    <ul>My Mentored:<dsp:valueof param="element.id"/>
-                        <dsp:valueof param="element.name"/></ul>
+                    <ul>Mentored:<dsp:valueof param="element.name"/>
+                        <dsp:valueof param="element.id"/>
+                        <dsp:valueof param="element.repositoryId"/>
+                        <dsp:input type="hidden" bean="/components/RepositoryFormHandlersPersonEdit.men" paramvalue="element.repositoryId" />
+                        <dsp:input  type="submit" value="Delete" bean="/components/RepositoryFormHandlersPersonEdit.delete"/></ul>
                 </dsp:oparam>
             </dsp:droplet>
         </dsp:droplet>
 
+
+
+
+
+
         Name: <dsp:input type="text" bean="/components/RepositoryFormHandlersPersonEdit.value.name"/>
-        <dsp:input type="hidden" bean="/components/RepositoryFormHandlersPersonEdit.repositoryId" value="${userId}" />
+        <dsp:input type="hidden" bean="/components/RepositoryFormHandlersPersonEdit.repositoryId" value="${userId}"/>
         <dsp:input bean="/components/RepositoryFormHandlersPersonEdit.update" type="submit" value="Edit"/>
-        <dsp:input bean="/components/RepositoryFormHandlersPersonEdit.updateSuccessURL" type="hidden" value="index.jsp" />
-        <dsp:input bean="/components/RepositoryFormHandlersPersonEdit.updateErrorURL" type="hidden" value="details.jsp" />
+        <dsp:input bean="/components/RepositoryFormHandlersPersonEdit.updateSuccessURL" type="hidden"
+                   value="index.jsp"/>
+        <dsp:input bean="/components/RepositoryFormHandlersPersonEdit.updateErrorURL" type="hidden"
+                   value="details.jsp"/>
 
     </dsp:form>
     </body>

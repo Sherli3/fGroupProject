@@ -18,7 +18,7 @@
         <table name="role_person_id" type="multi" id-column-names="id_person">
             <property name="roles" data-type="set"  column-name="id_role" component-item-type= "role"/>
         </table>
-        <table name="mentor_and_user" type="multi" id-column-names="mentor_id">
+        <table name="mentor_and_user" type="multi"  id-column-names="mentor_id">
             <property name="mentorUser" data-type="set" column-name="user_id" component-item-type= "user"/>
         </table>
         <table name="mentor_and_user" type="multi" id-column-names="user_id">

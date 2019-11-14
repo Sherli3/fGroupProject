@@ -28,34 +28,26 @@ public class RepositoryFormHandlersPersonEdit extends RepositoryFormHandler {
         } catch (RepositoryException e) {
             e.printStackTrace();
         }
-
         super.postUpdateItemProperties(pItem);
-
     }
-
 
     public boolean handleDelete(DynamoHttpServletRequest pRequest, DynamoHttpServletResponse pResponse) throws ServletException, IOException {
         try {
-            logDebug("MENTOR ID: " + person);
-            logDebug("PERSON ID: " + idMentor);
-            MutableRepositoryItem person = this.getRepository().getItemForUpdate(idMentor, "user");
-            Set<RepositoryItem> mentors = (Set<RepositoryItem>) person.getPropertyValue("mentor");
+            MutableRepositoryItem user = this.getRepository().getItemForUpdate(idMentor, "user");
+            Set<RepositoryItem> mentors = (Set<RepositoryItem>) user.getPropertyValue("mentor");
             for (RepositoryItem mentor : mentors) {
-                logDebug("MENTOR CHECKED ID: " + mentor.getRepositoryId() );
-                if(mentor.getRepositoryId().equals(this.person)) {
-                    logDebug("EQUALS!!!! ");
+                if (mentor.getRepositoryId().equals(this.person)) {
                     mentors.remove(mentor);
                 }
             }
-            person.setPropertyValue("mentor", mentors);
-            this.getRepository().updateItem(person);
-
+            user.setPropertyValue("mentor", mentors);
+            this.getRepository().updateItem(user);
 
         } catch (RepositoryException e) {
             e.printStackTrace();
         }
-        return true;
-
+        return checkFormRedirect("/person/update.jsp?parId=" + idMentor,
+                "/person/index.jsp", pRequest, pResponse);
     }
 
     public String getIdMentor() {

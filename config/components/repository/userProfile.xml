@@ -6,23 +6,19 @@
     <header>
         <name>User repository</name>
         <author>Klimkova Anastasiya</author>
-        <description>
-            Task 4
-        </description>
+        <description>Task 5</description>
     </header>
     <item-descriptor name="user" default="true">
         <table name="DPS_USER" type="primary" id-column-names="id">
-        </table>
-    </item-descriptor>
-    <item-descriptor name="role" default="true">
-        <table name="DPS_ROLE" type="primary" id-column-names="id">
-        </table>
-    </item-descriptor>
+            <property name="login" column-names="login" data-type="string"/>
+            <property name="firstName" column-names="first_name" data-type="string"/>
+            <property name="password" column-names="password" data-type="string"/>
 
-    <item-descriptor name="actions" default="true">
-        <table name="actions" type="primary" id-column-names="id">
-            <property name="visitDate" column-names="visit_date" data-type="date"/>
-            <property name="isOk" column-names="isOk" data-type="boolean"/>
+        </table>
+    </item-descriptor>
+    <item-descriptor name="role">
+        <table name="DPS_ROLE" type="primary" id-column-names="role_id">
+            <property name="roleName" column-names="name" data-type="string"/>
         </table>
     </item-descriptor>
 

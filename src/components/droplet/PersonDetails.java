@@ -7,20 +7,10 @@ import atg.servlet.DynamoHttpServletRequest;
 import atg.servlet.DynamoHttpServletResponse;
 import atg.servlet.DynamoServlet;
 
-import atg.userprofiling.*;
-
 import javax.servlet.ServletException;
 import java.io.IOException;
 
 public class PersonDetails extends DynamoServlet {
-    ProfileForm f;
-    ProfileRequestServlet p;
-    Profile profile;
-    ProfileFormHandler profileFormHandler;
-    AccessController accessController;
-    RuleAccessController RuleAccessController;
-    GroupAccessController GroupAccessController;
-    AccessRightAccessController AccessRightAccessController;
 
     Repository repository;
 

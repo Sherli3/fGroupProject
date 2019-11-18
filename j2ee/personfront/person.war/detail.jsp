@@ -3,9 +3,21 @@
 <%@ taglib prefix="c" uri="/WEB-INF/tld/c.tld" %>
 <%@ page import="atg.servlet.*"%>
 <dsp:page>
+    <dsp:importbean bean="/atg/userprofiling/ProfileFormHandler"/>
     <html>
     <head><title>Task 5</title></head>
     <body>
+    <dsp:getvalueof var="userId" param="_requestid" vartype="java.lang.String"/>
+    Person - ${userId}
+    <dsp:droplet name="/atg/dynamo/droplet/Compare">
+        <dsp:param bean="/atg/userprofiling/Profile.securityStatus" name="obj1"/>
+        <dsp:param bean="/atg/userprofiling/PropertyManager.securityStatusLogin" name="obj2"/>
+
+    </dsp:droplet>
+
+    <dsp:form action="detail.jsp" method="post">
+        <dsp:input bean="/atg/userprofiling/ProfileFormHandler.logout" type="Submit" value="Logout"/>
+    </dsp:form>
     </body>
     </html>
 </dsp:page>

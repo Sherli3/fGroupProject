@@ -12,27 +12,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ProfileRepositoryHandler extends ProfileFormHandler {
-    private String role;
-    protected void postCreateUser(DynamoHttpServletRequest pRequest, DynamoHttpServletResponse pResponse) throws ServletException, IOException {
-       /* Set<MutableRepositoryItem> roles = new HashSet<>();
-        try {
-            MutableRepositoryItem item= getProfile().getProfileTools().getProfileRepository().getItemForUpdate("role", role);
-            item.setPropertyValue("role", roles);
-            roles.add(item);
+    private String roleId;
 
+    protected void postCreateUser(DynamoHttpServletRequest pRequest, DynamoHttpServletResponse pResponse) throws ServletException, IOException {
+        Set<MutableRepositoryItem> roles = new HashSet<>();
+        try {
+            MutableRepositoryItem item= getProfile().getProfileTools().getProfileRepository().getItemForUpdate(roleId, "role");
+            roles.add(item);
+            MutableRepositoryItem mutableRepositoryItem =getProfile().getProfileTools().getProfileRepository().
+                    getItemForUpdate(getRepositoryId(), getCreateProfileType());
+            mutableRepositoryItem.setPropertyValue("roles", roles);
         } catch (RepositoryException e) {
             e.printStackTrace();
         }
 
-*/
-
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 }

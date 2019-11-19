@@ -38,6 +38,13 @@ CREATE TABLE mentor_and_user(
  primary key(mentor_id,user_id)
 );
 
+create table user_login_properties(
+ user_id VARCHAR(32)not null references dps_user(id),
+ visit_time timestamp,
+ isOk char(1),
+ PRIMARY KEY(user_id)
+);
+
 
 insert into user_tbl (ID, NAM_COL) values (1, 'Petya');
 insert into user_tbl (ID, NAM_COL) values (2, 'Petya');

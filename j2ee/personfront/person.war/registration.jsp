@@ -37,11 +37,26 @@
                     <td><dsp:input bean="ProfileFormHandler.value.confirmpassword"  type="password"  /></td>
                 </tr>
 
+                <dsp:select bean="ProfileFormHandler.roleId">
+                    Roles:
+                    <dsp:droplet name="/atg/dynamo/droplet/RQLQueryRange">
+                        <dsp:param name="queryRQL" value="all"/>
+                        <dsp:param name="repository" value="/atg/userprofiling/ProfileAdapterRepository"/>
+                        <dsp:param name="howMany" value="10"/>
+                        <dsp:param name="itemDescriptor" value="role"/>
+                        <dsp:oparam name="output">
+                            <dsp:option paramvalue="element.repositoryId">
+                            <dsp:valueof param="element.repositoryId"/>
+                            <dsp:valueof param="element.name"/>
+                            </dsp:option>
+                        </dsp:oparam>
+                    </dsp:droplet>
+                </dsp:select>
+
                 <tr>
                     <td colspan="2">
                         <dsp:input bean="ProfileFormHandler.create" type="submit" value="Register" />
-
-                        <dsp:input bean="ProfileFormHandler.createSuccessURL" type="hidden" value="index.jsp" />
+                        <dsp:input bean="ProfileFormHandler.createSuccessURL" type="hidden" value="detail.jsp" />
                     </td>
                 </tr>
 

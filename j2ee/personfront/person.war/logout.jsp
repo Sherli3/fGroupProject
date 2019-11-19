@@ -6,6 +6,7 @@
     <html>
     <head><title>Task 5</title></head>
     <body>
+    Logout
     </body>
     </html>
 </dsp:page>

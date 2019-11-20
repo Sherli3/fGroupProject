@@ -1,5 +1,6 @@
 package components;
 
+import atg.droplet.DropletException;
 import atg.repository.MutableRepositoryItem;
 import atg.repository.RepositoryException;
 import atg.repository.RepositoryItem;
@@ -8,11 +9,9 @@ import atg.servlet.DynamoHttpServletResponse;
 import atg.userprofiling.ProfileFormHandler;
 import atg.userprofiling.ProfileTools;
 import atg.userprofiling.PropertyManager;
-import com.sun.jmx.mbeanserver.Repository;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,15 +44,22 @@ public class ProfileRepositoryHandler extends ProfileFormHandler {
             if(timeItem==null){
                 timeItem =getProfile().getProfileTools().getProfileRepository().createItem("visit");
                 timeItem.setPropertyValue("userId", userId);
-                timeItem.setPropertyValue("visitTime", new Date(timeNow));
+                timeItem.setPropertyValue("visitTime", new Date(timeNow+ TimeUnit.SECONDS.toMillis(60)));
                 timeItem.setPropertyValue("isOk", true);
                 getProfileTools().getProfileRepository().addItem(timeItem);
                 System.out.println("ITEM VISIT if null : "+ timeItem);
 
             }
+            boolean isOk = (boolean) timeItem.getPropertyValue("isOk");
+            long checkTime= ((Date)timeItem.getPropertyValue("visitTime")).getTime();
+            //if(!isOk){
+            if(timeNow<checkTime){
+                int status = this.checkFormError(this.getLoginErrorURL(), pRequest, pResponse);
+                this.addFormException(new DropletException("You not is ok"));
+            }
             System.out.println("ITEM USER: "+ item);
             timeItem.setPropertyValue("userId", userId);
-            timeItem.setPropertyValue("visitTime", new Date(timeNow));
+            timeItem.setPropertyValue("visitTime", new Date(timeNow+ TimeUnit.SECONDS.toMillis(60)));
             timeItem.setPropertyValue("isOk", true);
             getProfileTools().getProfileRepository().updateItem(timeItem);
         }
@@ -68,7 +74,7 @@ public class ProfileRepositoryHandler extends ProfileFormHandler {
         System.out.println("LOGIN: " +login);
 
     }
-
+    
 
     public String getRoleId() {
         return roleId;

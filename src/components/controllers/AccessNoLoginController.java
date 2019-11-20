@@ -5,13 +5,14 @@ import atg.servlet.DynamoHttpServletRequest;
 import atg.userprofiling.AccessController;
 import atg.userprofiling.Profile;
 
-public class AccessLoginController implements AccessController {
+public class AccessNoLoginController implements AccessController {
     @Override
     public boolean allowAccess(Profile profile, DynamoHttpServletRequest dynamoHttpServletRequest) {
         boolean isLoggedIn = false;
+
         try {
             Integer securityStatus= profile.getProfileTools().getSecurityStatus(profile);
-            if(securityStatus >= profile.getProfileTools().getPropertyManager().getSecurityStatusLogin()){
+            if(securityStatus < profile.getProfileTools().getPropertyManager().getSecurityStatusLogin()){
                 isLoggedIn = true;
             }
 

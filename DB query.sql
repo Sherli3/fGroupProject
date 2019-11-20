@@ -37,13 +37,6 @@ CREATE TABLE mentor_and_user(
  user_id INTEGER not null,
  primary key(mentor_id,user_id)
 );
-
-create table user_login_properties(
- user_id VARCHAR(32)not null references dps_user(id),
- visit_time timestamp,
- isOk char(1),
- PRIMARY KEY(user_id)
-);
 create table user_login_properties(
  user_id VARCHAR(32)not null,
  visit_time timestamp,

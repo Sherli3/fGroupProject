@@ -10,11 +10,18 @@
     <dsp:importbean bean="/atg/dynamo/droplet/ErrorMessageForEach"/>
     <body>
     <dsp:form formid="loginForm" action="login.jsp" method="post">
+        <dsp:droplet name="/atg/dynamo/droplet/Compare">
+        <dsp:param bean="/atg/userprofiling/Profile.securityStatus" name="obj1"/>
+        <dsp:param bean="/atg/userprofiling/PropertyManager.securityStatusLogin" name="obj2"/>
+        <dsp:oparam name="lessthan">
         Login: <dsp:input bean="ProfileFormHandler.value.login" maxlength="30" size="25" type="text" required="true"/>
         Password:<dsp:input bean="ProfileFormHandler.value.password" maxlength="30" size="25" type="password" required="true"/>
         <dsp:input bean="ProfileFormHandler.login" type="submit" value="Log In"/>
+        </dsp:oparam>
+        </dsp:droplet>
         <dsp:input bean="ProfileFormHandler.loginSuccessURL" type="hidden" value="detail.jsp"/>
         <dsp:input bean="ProfileFormHandler.loginErrorURL" type="hidden" value="logout.jsp"/>
+
 
         <dsp:droplet name="ErrorMessageForEach">
             <dsp:param bean="ProfileFormHandler.formExceptions" name="exceptions"/>

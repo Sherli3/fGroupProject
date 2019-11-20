@@ -10,6 +10,10 @@
     <dsp:importbean bean="/atg/dynamo/droplet/ErrorMessageForEach"/>
     <body>
     <dsp:form id="registerForm" method="post" action="registration.jsp">
+        <dsp:droplet name="/atg/dynamo/droplet/Compare">
+        <dsp:param bean="/atg/userprofiling/Profile.securityStatus" name="obj1"/>
+        <dsp:param bean="/atg/userprofiling/PropertyManager.securityStatusLogin" name="obj2"/>
+        <dsp:oparam name="lessthan">
         <table>
             <tbody>
             <tr>
@@ -59,6 +63,8 @@
                     <dsp:input bean="ProfileFormHandler.createSuccessURL" type="hidden" value="detail.jsp"/>
                 </td>
             </tr>
+        </dsp:oparam>
+        </dsp:droplet>
 
             <tr>
                 <td colspan="2">

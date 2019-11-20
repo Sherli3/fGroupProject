@@ -7,8 +7,6 @@ import atg.repository.RepositoryItem;
 import atg.servlet.DynamoHttpServletRequest;
 import atg.servlet.DynamoHttpServletResponse;
 import atg.userprofiling.ProfileFormHandler;
-import atg.userprofiling.ProfileTools;
-import atg.userprofiling.PropertyManager;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -65,7 +63,6 @@ public class ProfileRepositoryHandler extends ProfileFormHandler {
             timeItem.setPropertyValue("visitTime", new Date(timeNow + TimeUnit.SECONDS.toMillis(60)));
             timeItem.setPropertyValue("isOk", true);
             getProfileTools().getProfileRepository().addItem(timeItem);
-            System.out.println("ITEM VISIT if null : " + timeItem);
             return timeItem;
         } catch (RepositoryException e) {
             e.printStackTrace();

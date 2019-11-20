@@ -44,6 +44,12 @@ create table user_login_properties(
  isOk char(1),
  PRIMARY KEY(user_id)
 );
+create table user_login_properties(
+ user_id VARCHAR(32)not null,
+ visit_time timestamp,
+ isOk char(1),
+PRIMARY KEY(user_id)
+);
 
 
 insert into user_tbl (ID, NAM_COL) values (1, 'Petya');

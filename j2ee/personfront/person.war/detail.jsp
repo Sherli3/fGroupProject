@@ -16,7 +16,7 @@
 
     </dsp:droplet>
         <dsp:input bean="/atg/userprofiling/ProfileFormHandler.logout" type="Submit" value="Logout"/>
-        <dsp:input bean="/atg/userprofiling/ProfileFormHandler.logoutSuccessURL" type="hidden" value="index.jsp" />
+        <dsp:input bean="/atg/userprofiling/ProfileFormHandler.logoutSuccessURL" type="hidden" value="login.jsp" />
         <dsp:input bean="/atg/userprofiling/ProfileFormHandler.logoutErrorURL" type="hidden" value="logout.jsp" />
     </dsp:form>
     </body>

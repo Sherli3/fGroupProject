@@ -7,8 +7,8 @@
     <html>
     <head><title>Task 5</title></head>
     <body>
-    <dsp:getvalueof var="userId" param="_requestid" vartype="java.lang.String"/>
-    Person - ${userId}
+    <dsp:getvalueof var="reqId" param="_requestid" vartype="java.lang.String"/>
+    Request Id: ${reqId}
     <dsp:form action="detail.jsp" method="post">
     <dsp:droplet name="/atg/dynamo/droplet/Compare">
         <dsp:param bean="/atg/userprofiling/Profile.securityStatus" name="obj1"/>

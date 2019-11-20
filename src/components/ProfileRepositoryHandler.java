@@ -35,46 +35,60 @@ public class ProfileRepositoryHandler extends ProfileFormHandler {
     }
 
     protected void preLoginUser(DynamoHttpServletRequest pRequest, DynamoHttpServletResponse pResponse) throws ServletException, IOException {
-        RepositoryItem user= findUser(pRequest,pResponse);
-        String userId= user.getRepositoryId();
+        RepositoryItem user = findUser(pRequest, pResponse);
+        String userId = user.getRepositoryId();
         long timeNow = System.currentTimeMillis();
         try {
-            MutableRepositoryItem item = getProfile().getProfileTools().getProfileRepository().getItemForUpdate(userId, "user");
-            MutableRepositoryItem timeItem =getProfile().getProfileTools().getProfileRepository().getItemForUpdate(userId,"visit");
-            if(timeItem==null){
-                timeItem =getProfile().getProfileTools().getProfileRepository().createItem("visit");
-                timeItem.setPropertyValue("userId", userId);
-                timeItem.setPropertyValue("visitTime", new Date(timeNow+ TimeUnit.SECONDS.toMillis(60)));
-                timeItem.setPropertyValue("isOk", true);
-                getProfileTools().getProfileRepository().addItem(timeItem);
-                System.out.println("ITEM VISIT if null : "+ timeItem);
-
+            MutableRepositoryItem timeItem = getProfile().getProfileTools().getProfileRepository().getItemForUpdate(userId, "visit");
+            if (timeItem == null) {
+                timeItem = createVisitTime(userId);
             }
-            boolean isOk = (boolean) timeItem.getPropertyValue("isOk");
-            long checkTime= ((Date)timeItem.getPropertyValue("visitTime")).getTime();
-            //if(!isOk){
-            if(timeNow<checkTime){
-                int status = this.checkFormError(this.getLoginErrorURL(), pRequest, pResponse);
+            long checkTime = ((Date) timeItem.getPropertyValue("visitTime")).getTime();
+            if (timeNow < checkTime) {
+              //  int status = this.checkFormError(this.getLoginErrorURL(), pRequest, pResponse);
                 this.addFormException(new DropletException("You not is ok"));
+            } else {
+                timeItem = setVisitTime(userId);
             }
-            System.out.println("ITEM USER: "+ item);
-            timeItem.setPropertyValue("userId", userId);
-            timeItem.setPropertyValue("visitTime", new Date(timeNow+ TimeUnit.SECONDS.toMillis(60)));
-            timeItem.setPropertyValue("isOk", true);
-            getProfileTools().getProfileRepository().updateItem(timeItem);
-        }
-        catch (RepositoryException e) {
+        } catch (RepositoryException e) {
             e.printStackTrace();
         }
 
-        ProfileTools ptools = this.getProfileTools();
-        PropertyManager pmgr = ptools.getPropertyManager();
-        String loginPropertyName = pmgr.getLoginPropertyName();
-        String login = this.getStringValueProperty(loginPropertyName);
-        System.out.println("LOGIN: " +login);
-
     }
-    
+
+    public MutableRepositoryItem createVisitTime(String userId) {
+        long timeNow = System.currentTimeMillis();
+        MutableRepositoryItem timeItem = null;
+        try {
+            timeItem = getProfile().getProfileTools().getProfileRepository().createItem("visit");
+            timeItem.setPropertyValue("userId", userId);
+            timeItem.setPropertyValue("visitTime", new Date(timeNow + TimeUnit.SECONDS.toMillis(60)));
+            timeItem.setPropertyValue("isOk", true);
+            getProfileTools().getProfileRepository().addItem(timeItem);
+            System.out.println("ITEM VISIT if null : " + timeItem);
+            return timeItem;
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+        return timeItem;
+    }
+
+    public MutableRepositoryItem setVisitTime(String userId) {
+        MutableRepositoryItem timeItem = null;
+        long timeNow = System.currentTimeMillis();
+        try {
+            timeItem = getProfile().getProfileTools().getProfileRepository().getItemForUpdate(userId, "visit");
+            timeItem.setPropertyValue("userId", userId);
+            timeItem.setPropertyValue("visitTime", new Date(timeNow + TimeUnit.SECONDS.toMillis(60)));
+            timeItem.setPropertyValue("isOk", true);
+            getProfileTools().getProfileRepository().updateItem(timeItem);
+            return timeItem;
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+        return timeItem;
+    }
+
 
     public String getRoleId() {
         return roleId;

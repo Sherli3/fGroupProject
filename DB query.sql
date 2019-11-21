@@ -1,8 +1,73 @@
-drop table user_tbl;
-drop table role;
-drop table role_person_id;
-drop table scores;
-drop table visit_date_time;
+CREATE TABLE person (
+id VARCHAR(50) not null,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+primary key(id)
+);
+
+CREATE TABLE person (
+id VARCHAR(50) not null,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+asset_version INT NOT NULL,
+workspace_id VARCHAR(40) NOT NULL,
+branch_id VARCHAR(40) NOT NULL,
+is_head NUMERIC(1) NOT NULL,
+version_deleted NUMERIC(1) NOT NULL,
+version_editable NUMERIC(1) NOT NULL,
+pred_version INT NULL,
+checkin_date TIMESTAMP NULL,
+PRIMARY KEY(id, asset_version)
+);
+
+CREATE TABLE SKILLS (
+id VARCHAR(50) not null,
+SKILL VARCHAR(50),
+primary key(id)
+);
+
+CREATE TABLE SKILLS (
+id VARCHAR(50) not null,
+SKILL VARCHAR(50),
+asset_version INT NOT NULL,
+workspace_id VARCHAR(40) NOT NULL,
+branch_id VARCHAR(40) NOT NULL,
+is_head NUMERIC(1) NOT NULL,
+version_deleted NUMERIC(1) NOT NULL,
+version_editable NUMERIC(1) NOT NULL,
+pred_version INT NULL,
+checkin_date TIMESTAMP NULL,
+PRIMARY KEY(id, asset_version)
+);
+
+CREATE TABLE RESUME (
+id VARCHAR(50) not null,
+NAME VARCHAR(50),
+ABOUT VARCHAR(50),
+primary key(id)
+);
+
+CREATE TABLE RESUME (
+id VARCHAR(50) not null,
+NAME VARCHAR(50),
+ABOUT VARCHAR(50),
+asset_version INT NOT NULL,
+workspace_id VARCHAR(40) NOT NULL,
+branch_id VARCHAR(40) NOT NULL,
+is_head NUMERIC(1) NOT NULL,
+version_deleted NUMERIC(1) NOT NULL,
+version_editable NUMERIC(1) NOT NULL,
+pred_version INT NULL,
+checkin_date TIMESTAMP NULL,
+PRIMARY KEY(id, asset_version)
+);
+CREATE TABLE PERSON_TO_RESUME(
+PERSON_ID INTEGER not null,
+RESUME_ID INTEGER not null,
+primary key(PERSON_ID,RESUME_ID)
+);
+
+
 
 CREATE TABLE user_tbl (
  id INTEGER not null,

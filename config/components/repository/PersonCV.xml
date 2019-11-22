@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE gsa-template
+        PUBLIC "-//Art Technology Group, Inc.//DTD Dynamo Security//EN"
+        "http://www.atg.com/dtds/gsa/gsa_1.0.dtd">
+<gsa-template>
+    <item-descriptor name="person">
+        <table name="person" type="primary" id-column-name="id">
+            <property name="personId" column-name="id"  data-type="string"/>
+            <property name="firstName" column-name="first_name"  data-type="string"/>
+            <property name="lastName" column-name="last_name"  data-type="string"/>
+        </table>
+        <table name="person_to_resume" type="multi" id-column-names="person_id">
+            <property name="resum" data-type="set" column-name="resume_id" component-item-type= "resume"/>
+        </table>
+    </item-descriptor>
+
+    <item-descriptor name="skills">
+        <table name="skills" type="primary" id-column-name="skill_id">
+            <property name="skillId" column-name="skill_id"  data-type="string"/>
+            <property name="skill" column-name="skill"  data-type="string"/>
+        </table>
+    </item-descriptor>
+
+    <item-descriptor name="resume">
+        <table name="resume" type="primary" id-column-name="resume_id">
+            <property name="resumeId" column-name="resume_id"  data-type="string"/>
+            <property name="name" column-name="name"  data-type="string"/>
+            <property name="about" column-name="about"  data-type="string"/>
+        </table>
+        <table name="skill_to_resume" type="multi" id-column-names="resume_id">
+            <property name="skill" data-type="set" column-name="skill_id" component-item-type= "skills"/>
+        </table>
+    </item-descriptor>
+
+</gsa-template>

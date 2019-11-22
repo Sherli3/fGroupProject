@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-ATG-Required: DAS DPS DSS DCS-UI.Versioned BIZUI PubPortlet DafEar.Admin DCS.Versioned DCS-UI DCS-UI.SiteAdmin.Versioned SiteAdmin.Versioned
+ATG-Required: DAS DPS DSS
 ATG-Config-Path: config/
 ATG-Class-Path: ./out
 ATG-EAR-Module: j2ee/personfront

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<find-configuration>
+    <asset-family id="personCV" site-filtering="true">
+        <display-name>PersonCV</display-name>
+        <enable-default-query>true</enable-default-query>
+        <enable-filter-as-you-type>true</enable-filter-as-you-type>
+        <result-list page-size="100"/>
+        <default-asset-type>person</default-asset-type>
+
+        <asset-type id="person" site-filtering="true">
+            <enable-default-query>true</enable-default-query>
+            <enable-filter-as-you-type>true</enable-filter-as-you-type>
+            <repository-path>/components/repository/PersonCV</repository-path>
+            <repository-item-type>person</repository-item-type>
+        </asset-type>
+
+        <asset-type id="resume" site-filtering="true">
+            <enable-default-query>true</enable-default-query>
+            <enable-filter-as-you-type>true</enable-filter-as-you-type>
+            <repository-path>/components/repository/PersonCV</repository-path>
+            <repository-item-type>resume</repository-item-type>
+        </asset-type>
+
+        <asset-type id="skills" site-filtering="true">
+            <enable-default-query>true</enable-default-query>
+            <enable-filter-as-you-type>true</enable-filter-as-you-type>
+            <repository-path>/components/repository/PersonCV</repository-path>
+            <repository-item-type>skills</repository-item-type>
+        </asset-type>
+    </asset-family>
+</find-configuration>

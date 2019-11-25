@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE browse-hierarchy SYSTEM "dynamosystemresource:/atg/dtds/browse-hierarchy/browse-hierarchy_1.0.dtd">
+
+<browse-hierarchy xml-combine="append">
+
+    <!-- Adding Custom Browse to Home -->
+    <browse-item id="home" xml-combine="append">
+        <browse-item reference-id="personCV"/>
+    </browse-item>
+
+    <!-- The repository Home-->
+    <browse-item id="personCV" label="PersonCV" is-root="true" icon-resource="node.priceLists.iconSmall">
+        <browse-item reference-id="person"/>
+        <browse-item reference-id="resume"/>
+        <browse-item reference-id="skills"/>
+    </browse-item>
+
+    <!-- The Person -->
+    <browse-item id="person" label="Person" is-root="false" icon-resource="node.priceLists.iconSmall" show-count="true">
+        <list-definition id="allperson" retriever="query" child-type="/components/repository/PersonCV:person">
+            <retriever-parameter name="query" value="ALL" />
+        </list-definition>
+    </browse-item>
+
+    <!-- The Resume -->
+    <browse-item id="resume" label="Resume" is-root="false" icon-resource="node.priceLists.iconSmall" show-count="true">
+        <list-definition id="allresume" retriever="query" child-type="/components/repository/PersonCV:resume">
+            <retriever-parameter name="query" value="ALL" />
+        </list-definition>
+    </browse-item>
+
+    <!-- The Skills -->
+    <browse-item id="skills" label="Skills" is-root="true" icon-resource="node.priceLists.iconSmall">
+        <list-definition id="allskills" retriever="query" child-type="/components/repository/PersonCV:skills">
+            <retriever-parameter name="query" value="ALL" />
+        </list-definition>
+    </browse-item>
+</browse-hierarchy>

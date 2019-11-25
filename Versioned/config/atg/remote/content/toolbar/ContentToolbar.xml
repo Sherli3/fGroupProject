@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE browse-hierarchy
+        PUBLIC "-//Art Technology Group, Inc.//DTD Asset Manager Browse Hierarchy//EN"
+        'http://www.atg.com/dtds/toolbar/toolbar_1.0.dtd'>
+
+<toolbar xml-combine="append">
+    <operation-menu id="personBrowseOpMenu">
+        <toolbar-scope asset-area="person" pane-id="browse"/>
+        <operation-menu-item id="edit" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="duplicate" />
+        <operation-menu-item id="delete" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="addToProject" />
+        <operation-menu-item id="export" />
+    </operation-menu>
+    <operation-menu id="personFindOpMenu">
+        <toolbar-scope asset-area="person" pane-id="find"/>
+        <operation-menu-item id="edit" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="duplicate" />
+        <operation-menu-item id="delete" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="addToProject" />
+        <operation-menu-item id="export" />
+    </operation-menu>
+
+    <operation-menu id="skillsBrowseOpMenu">
+        <toolbar-scope asset-area="skills" pane-id="browse"/>
+        <operation-menu-item id="edit" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="duplicate" />
+        <operation-menu-item id="delete" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="addToProject" />
+        <operation-menu-item id="export" />
+    </operation-menu>
+    <operation-menu id="skillsFindOpMenu">
+        <toolbar-scope asset-area="skills" pane-id="find"/>
+        <operation-menu-item id="edit" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="duplicate" />
+        <operation-menu-item id="delete" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="addToProject" />
+        <operation-menu-item id="export" />
+    </operation-menu>
+
+    <operation-menu id="resumeBrowseOpMenu">
+        <toolbar-scope asset-area="resume" pane-id="browse"/>
+        <operation-menu-item id="edit" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="duplicate" />
+        <operation-menu-item id="delete" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="addToProject" />
+        <operation-menu-item id="export" />
+    </operation-menu>
+    <operation-menu id="resumeFindOpMenu">
+        <toolbar-scope asset-area="resume" pane-id="find"/>
+        <operation-menu-item id="edit" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="duplicate" />
+        <operation-menu-item id="delete" />
+        <operation-menu-item divider="true" />
+        <operation-menu-item id="addToProject" />
+        <operation-menu-item id="export" />
+    </operation-menu>
+</toolbar>
